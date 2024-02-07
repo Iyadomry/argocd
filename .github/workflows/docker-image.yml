@@ -18,5 +18,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
+        context: ./project-argocd/silkapp
+        file: ./project-argocd/silkapp/Dockerfile
         push: true
         tags: iyadomry/silkapp:latest  # Replace with your Docker Hub username/repository
