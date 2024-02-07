@@ -8,21 +8,19 @@ kind: Deployment
 metadata:
   name: silkapp-nginx
   namespace: silkapp-ns
-  labels:
-    app: silkapp-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: silkapp-app
+      app: silkapp-nginx
   template:
     metadata:
       labels:
-        app: silkapp-app
+        app: silkapp-nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx
+      - name: silkapp-nginx
+        image: iyadomry/silkapp:latest
         ports:
         - containerPort: 80
 ---
@@ -33,9 +31,9 @@ metadata:
   namespace: silkapp-ns
 spec:
   type: ClusterIP
-  ports:
-  - port: 80
-    targetPort: 7070
-    protocol: TCP
   selector:
-    app: silkapp-app
+    app: silkapp-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
