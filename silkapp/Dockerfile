@@ -5,7 +5,7 @@ FROM nginx:latest
 RUN rm /usr/share/nginx/html/index.html
 
 # Copy the custom HTML file into the container
-COPY index.html /usr/share/nginx/html
+COPY silkapp-content/index.html /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
