@@ -21,4 +21,4 @@ jobs:
         context: ./project-argocd/silkapp
         file: ./project-argocd/silkapp/Dockerfile
         push: true
-        tags: iyadomry/silkapp:v3  # Replace with your Docker Hub username/repository
+        tags: iyadomry/silkapp:v4  # Replace with your Docker Hub username/repository
