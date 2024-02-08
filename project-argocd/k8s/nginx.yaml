@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: silkapp-nginx
-        image: iyadomry/silkapp:v8
+        image: iyadomry/silkapp:v9
         ports:
         - containerPort: 80
 ---
