@@ -1,11 +1,18 @@
-project: default
-source:
-  repoURL: 'https://github.com/Iyadomry/argocd.git'
-  path: project-argocd/k8s
-  targetRevision: HEAD
-destination:
-  server: 'https://kubernetes.default.svc'
-  namespace: silkapp-ns
-syncPolicy:
-  automated:
-    selfHeal: true
+
+apiVersion: apps/v1                                                                                                                                                                                        │
+kind: Deployment                                                                                                                                                                                           │
+metadata:
+  name: argocd-server                                                                                                                                                                                      │
+  namespace: argocd  
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Iyadomry/argocd.git'
+    path: project-argocd/k8s
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: silkapp-ns
+  syncPolicy:
+    automated:
+      selfHeal: true
