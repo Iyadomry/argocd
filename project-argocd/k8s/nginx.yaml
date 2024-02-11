@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: silkapp-nginx
-        sed -i 's|image: iyadomry/silkapp:.*|image: iyadomry/silkapp:${{ github.event.inputs.image_version }}|' ./project-argocd/k8s/nginx.yaml
+        image: iyadomry/silkapp:
         ports:
         - containerPort: 80
 ---
