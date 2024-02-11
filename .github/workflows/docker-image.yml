@@ -39,8 +39,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "iyadomry"
+          git config user.email "iyad2fast@hotmail.com"
 
       - name: Commit and push if changed
         run: |
