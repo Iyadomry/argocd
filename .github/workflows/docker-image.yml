@@ -26,6 +26,7 @@ jobs:
         tags: iyadomry/silkapp:${{ github.event.inputs.image_version }}  # Replace with your Docker Hub username/repository
 
   update-version:
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
