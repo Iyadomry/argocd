@@ -2,10 +2,10 @@ name: Build and Push Docker image
 
 on:
   workflow_dispatch:
-    input:
+    inputs:
       image_version:
-      description: 'New TAG'
-      required: true
+        description: 'New TAG'
+        required: true
 
 jobs:
   build-and-push:
