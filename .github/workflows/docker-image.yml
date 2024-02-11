@@ -37,7 +37,7 @@ jobs:
 
       - name: Update version in YAML
         run: |
-          sed -i 's|image: iyadomry/silkapp:v9|image: iyadomry/silkapp:${{ github.event.inputs.new_version }}|' ./project-argocd/k8s/nginx.yaml
+          sed -i 's|image: iyadomry/silkapp:|image: iyadomry/silkapp:${{ github.event.inputs.new_version }}|' ./project-argocd/k8s/nginx.yaml
         shell: bash
 
       - name: Configure Git
