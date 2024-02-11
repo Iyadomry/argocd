@@ -3,7 +3,7 @@ name: Build and Push Docker image
 on:
   workflow_dispatch:
     inputs:
-      image_version:
+      image_version:  # This is the correct input variable you've defined
         description: 'New TAG'
         required: true
         
@@ -26,7 +26,7 @@ jobs:
         context: ./project-argocd/silkapp
         file: ./project-argocd/silkapp/Dockerfile
         push: true
-        tags: iyadomry/silkapp:${{ github.event.inputs.image_version }}  # Replace with your Docker Hub username/repository
+        tags: iyadomry/silkapp:${{ github.event.inputs.image_version }}  # Correctly using the input variable here
 
   update-version:
     needs: build-and-push
@@ -37,7 +37,7 @@ jobs:
 
       - name: Update version in YAML
         run: |
-          sed -i 's|image: iyadomry/silkapp:|image: iyadomry/silkapp:${{ github.event.inputs.new_version }}|' ./project-argocd/k8s/nginx.yaml
+          sed -i 's|image: iyadomry/silkapp:.*|image: iyadomry/silkapp:${{ github.event.inputs.image_version }}|' ./project-argocd/k8s/nginx.yaml
         shell: bash
 
       - name: Configure Git
@@ -48,7 +48,7 @@ jobs:
       - name: Commit and push if changed
         run: |
           git add ./project-argocd/k8s/nginx.yaml
-          git commit -m "Update silkapp-nginx image to ${{ github.event.inputs.new_version }}" || exit 0
+          git commit -m "Update silkapp-nginx image to ${{ github.event.inputs.image_version }}" || exit 0  # Corrected to use the right input variable
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
