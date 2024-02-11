@@ -6,6 +6,9 @@ on:
       image_version:
         description: 'New TAG'
         required: true
+        
+permissions:
+  contents: write
 
 jobs:
   build-and-push:
