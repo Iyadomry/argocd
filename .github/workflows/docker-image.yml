@@ -25,27 +25,26 @@ jobs:
         push: true
         tags: iyadomry/silkapp:${{ github.event.inputs.image_version }}  # Replace with your Docker Hub username/repository
 
-jobs:
-  update-version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    update-version:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
 
-      - name: Update version in YAML
-        run: |
-          sed -i 's|image: iyadomry/silkapp:v9|image: iyadomry/silkapp:${{ github.event.inputs.new_version }}|' ./project-argocd/k8s/nginx.yaml
-        shell: bash
+        - name: Update version in YAML
+          run: |
+            sed -i 's|image: iyadomry/silkapp:v9|image: iyadomry/silkapp:${{ github.event.inputs.new_version }}|' ./project-argocd/k8s/nginx.yaml
+          shell: bash
 
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+        - name: Configure Git
+          run: |
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
 
-      - name: Commit and push if changed
-        run: |
-          git add ./project-argocd/k8s/nginx.yaml
-          git commit -m "Update silkapp-nginx image to ${{ github.event.inputs.new_version }}" || exit 0
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        - name: Commit and push if changed
+          run: |
+            git add ./project-argocd/k8s/nginx.yaml
+            git commit -m "Update silkapp-nginx image to ${{ github.event.inputs.new_version }}" || exit 0
+            git push
+          env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
