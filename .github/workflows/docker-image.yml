@@ -2,6 +2,10 @@ name: Build and Push Docker image
 
 on:
   workflow_dispatch:
+    input:
+      image_version:
+      description: 'New TAG'
+      required: true
 
 jobs:
   build-and-push:
@@ -19,4 +23,4 @@ jobs:
         context: ./project-argocd/silkapp
         file: ./project-argocd/silkapp/Dockerfile
         push: true
-        tags: iyadomry/silkapp:latest  # Replace with your Docker Hub username/repository
+        tags: iyadomry/silkapp:'${{ github.event.inputs.image_version }}'  # Replace with your Docker Hub username/repository
