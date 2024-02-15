@@ -9,7 +9,7 @@ metadata:
   name: silkapp-nginx
   namespace: silkapp-ns
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: silkapp-nginx
