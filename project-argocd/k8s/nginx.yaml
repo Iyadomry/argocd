@@ -6,6 +6,8 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/silkapp.update-strategy:latest
   name: silkapp-nginx
   namespace: silkapp-ns
 spec:
