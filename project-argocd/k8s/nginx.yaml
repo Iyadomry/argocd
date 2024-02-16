@@ -27,7 +27,7 @@ metadata:
   name: silkapp-nginx-service
   namespace: silkapp-ns
 spec:
-  type: LoadBalancer  # Changed from ClusterIP to LoadBalancer
+  type: NodePort  # Changed from ClusterIP to LoadBalancer
   selector:
     app: silkapp-nginx
   ports:
